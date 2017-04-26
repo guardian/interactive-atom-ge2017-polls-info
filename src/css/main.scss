@@ -11,3 +11,39 @@
 .interactive-atom {
     margin: 0 !important;
 }
+
+.poll-tracker__text {
+    width: 100%;
+    border-top: 1px solid #ececec;
+    margin-bottom: 24px;
+    padding-top: 6px;
+
+    @include mq($from: desktop) {
+        width: 230px;
+        float: left;
+        margin-right: 10px;
+    }
+
+    h1 {
+        font-family: $f-serif-headline;
+        line-height: 28px;
+    }
+
+    p {
+        font-family: $f-sans-serif-text;
+        font-size: 14px;
+        margin-top: 12px;
+    }
+}
+
+.poll-placeholder, .poll-placeholder-two {
+  height: 300px;
+  background-color: aqua;
+  width: 100%;
+  margin-bottom: 20px;
+
+  @include mq($from: desktop) {
+    float: left;
+    width: 80%;
+  }
+}
