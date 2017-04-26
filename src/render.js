@@ -1,14 +1,17 @@
 import mainTemplate from './src/templates/main.html!text'
-import Mustache from 'mustache'
+import Handlebars from 'handlebars'
 import rp from 'request-promise'
 
 export function render() {
     return rp({
-        uri: 'https://interactive.guim.co.uk/docsdata-test/10-vIpZE0YzDUboflfHkI6xZBsAS3U7PwZacbo93aA2E.json',
+        uri: 'https://interactive.guim.co.uk/docsdata-test/1go6G6GaD6--5cAAPQxeO3ga1bHSwSsiuxM92l244-rQ.json',
         json: true
     }).then((data) => {
         var sheets = data.sheets;
-        var html = Mustache.render(mainTemplate, sheets);
-        return html;
+        var content = Handlebars.compile(
+                        mainTemplate,
+                        { compat: true }
+                );
+        return content(sheets);
     });
 }

@@ -12,10 +12,40 @@
 
 <div class="poll-placeholder-two"></div> -->
 
-{{#Sheet1}}
-<div class="poll-tracker__text">
-    <h1>{{Headline}}</h1>
-    <p>{{Description}}</p>
+{{#text}}
+<div class='poll-tracker__block'>
+    <div class="poll-tracker__text">
+        <h1>{{Headline}}</h1>
+        <p>{{Description}}</p>
+    </div>
+    <div class="poll-placeholder">
+      {{#@first}}
+
+      <!-- pollchart -->
+        <div id="pollchart"></div>
+        <div id="pollchartTooltip" class="tp-text pos-a d-n ff-ss fz-14">
+            <div class="fw-b pt-10"></div>
+            <div></div>
+            <div class="fw-b pb-7"></div>
+        </div>
+        <!-- end of pollchart -->
+
+
+      {{else}}
+
+      <div id="daybyday">
+          <div id="pollsterFilterContainer">
+              <span class="filter-title">Filter by pollster:</span>
+              <ul id="pollstersFilter"></ul>
+          </div>
+          <div id="pollsTable" ></div>
+          <br/>
+          <a href="#" id="showMorePolls" class="more">Show more</a>
+      </div>
+
+
+      {{/@first}}
+
+    </div>
 </div>
-<div class="poll-placeholder"></div>
-{{/Sheet1}}
+{{/text}}
