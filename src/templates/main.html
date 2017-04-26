@@ -12,18 +12,22 @@
 
 <div class="poll-placeholder-two"></div> -->
 
-<ul class="ul__party t-ul__party" style="list-style-type: none">
-    <li style="list-style: none"><span class="rect bgc-lab"></span></li>
-    <li><span class="rect bgc-snp"></span>SNP</li>
-    <li><span class="rect bgc-grn"></span>Green</li>
-    <li><span class="rect bgc-others"></span>Others</li>
-    <li><span class="rect bgc-ukip"></span>Ukip</li>
-    <li><span class="rect bgc-ldem"></span>Lib Dem</li>
-    <li><span class="rect bgc-con"></span></li>
-</ul>
+
 
 {{#text}}
 <div class='poll-tracker__block'>
+
+    {{#@first}}
+    <ul class="ul__party t-ul__party" style="list-style-type: none">
+        <li style="list-style: none"><span class="rect bgc-lab"></span></li>
+        <li><span class="rect bgc-snp"></span>SNP</li>
+        <li><span class="rect bgc-grn"></span>Green</li>
+        <li><span class="rect bgc-others"></span>Others</li>
+        <li><span class="rect bgc-ukip"></span>Ukip</li>
+        <li><span class="rect bgc-ldem"></span>Lib Dem</li>
+        <li><span class="rect bgc-con"></span></li>
+    </ul>
+    {{/@first}}
 
     <div class="poll-tracker__text">
         <h1>{{Headline}}</h1>
