@@ -1,6 +1,21 @@
+$ff-s:  "Guardian Egyptian Web", Georgia, serif;
+$ff-ss: "Guardian Text Sans Web","Agate Sans", sans-serif;
+$ff-agate: "Guardian Agate Sans 1 Web","Agate Sans", sans-serif;
+$con:    #005789;
+$grn:    #33A22B;
+$lab:    #E31F26;
+$ldem:   #FFB900;
+$others: #B3B3B4;
+$snp:    #FCDD03;
+$ukip:   #7D0069;
+$dup:    $others;
+$sdlp:    $others;
+$pc:     #868686;
+
 @import "mq";
 @import "fonts";
-
+@import "daybyday";
+@import "pollchart";
 // Uncomment for embeds
 //@import "embed";
 
@@ -52,4 +67,67 @@
     float: left;
     width: 80%;
   }
+}
+
+
+// backgound colors: (bgc-)
+.bgc-con    { background-color: $con; }
+.bgc-grn    { background-color: $grn; }
+.bgc-lab    { background-color: $lab; }
+.bgc-snp    { background-color: $snp; }
+.bgc-ldem   { background-color: $ldem; }
+.bgc-ukip   { background-color: $ukip; }
+.bgc-dup    { background-color: $dup; }
+.bgc-sdlp    { background-color: $sdlp; }
+.bgc-others { background-color: $others; }
+
+.bgc-white      { background-color: #FFF;}
+.bgc-grey-light { background-color: #EEE; }
+.bgc-grey-dark  { background-color: #424242; }
+.bgc-blue-light { background-color: #296d96; }
+.bgc-blue-dark  { background-color: #005689; }
+
+// fonts: (f*-)
+.ff-s  { font-family: $ff-s; }
+.ff-ss { font-family: $ff-ss; }
+
+// colors: (c-)
+.c-3  { color: #333; }
+.c-b3 { color: #b3b3b3; }
+.c-76 { color: #767676; }
+
+// list: (ul-, li)
+.ul__party {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  float: right;
+}
+.ul__party li {
+  padding-right: 15px;
+  float: left;
+  font-family: $f-sans-serif-text;
+  font-size: 14px;
+}
+.ul__party li:first-child .rect {
+  margin-left: 0;
+}
+.ul__party li:last-child {
+  padding-right: 0;
+}
+
+.ul__party li:first-child::after {
+  content: "Labour";
+}
+.ul__party li:last-child::after {
+  content: "Conservatives";
+}
+
+.ul__party .rect {
+    width: 10px;
+    height: 18px;
+    margin-right: 5px;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: top;
 }

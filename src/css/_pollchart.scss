@@ -1,0 +1,115 @@
+/* Atomic CSS */
+/* SVG: color of the parties */
+.con    { color: #005789; fill: #005789; stroke: #005789; }
+.lab    { color: #E31F26; fill: #E31F26; stroke: #E31F26; }
+.ldem   { color: #FFB900; fill: #FFB900; stroke: #FFB900; }
+.ukip   { color: #7D0069; fill: #7D0069; stroke: #7D0069; }
+.grn    { color: #33A22B; fill: #33A22B; stroke: #33A22B; }
+.snp    { color: #FCDD03; fill: #FCDD03; stroke: #FCDD03; }
+.others { color: #B3B3B4; fill: #B3B3B4; stroke: #B3B3B4; }
+
+.fw-b  { font-weight: bold; }
+.fz-14 { font-size: 14px; }
+.fz-12 { font-size: 12px; }
+
+.pt-70 { padding-top: 70px; }
+.pt-10 { padding-top: 10px; }
+.pb-7  { padding-bottom: 7px; }
+.pl-5  { padding-left: 5px; }
+
+.d-n { display: none; }
+.d-b { display: block; }
+
+.bb-5sb {
+  border-bottom: 5px solid black;
+}
+
+/* Tooltip */
+.tp-circle {
+  stroke: black;
+  stroke-width: 1;
+  fill: none;
+}
+.tp-text {
+  line-height: 1.25em;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0px 10px;
+}
+#pollchartTooltip{
+  position: absolute;
+}
+
+/* SVG */
+#pollchart {
+  /* Atomic specific for svg */
+  .op-0 {
+    opacity: 0;
+  }
+  .op-1-path path,
+  .op-1-pathpolls .path-polls {
+    opacity: 1;
+  }
+  .op-1-polls .pollster {
+    fill-opacity: 1;
+  }
+
+  /* SVG size */
+  svg {
+    width: 100%;
+  }
+
+  path {
+    fill: none;
+  }
+
+  .line-theday {
+    stroke: #767676;/*lightgrey;*/
+    stroke-width: 1px;
+    stroke-dasharray: 3, 4;
+}
+
+  .pollster {
+    stroke-width: 1;
+    fill-opacity: 0.15;
+  }
+
+  .pollster:hover {
+    fill-opacity: 1;
+  }
+  .pollster path {
+    stroke: black;
+    opacity: 0;
+  }
+
+  .circle-poll {
+    stroke: transparent;
+    stroke-width: 9;
+  }
+
+  .path-avg {
+    stroke-width: 2;
+    opacity: 1;
+  }
+  .polygon-range {
+    cursor: pointer;
+    fill: transparent;
+    stroke: transparent;
+  }
+  .party-dates text:last-child {
+    fill: transparent;
+    stroke: transparent;
+  }
+
+  /* SVG: axis */
+  .tick line {
+    stroke: black;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+  .tick.sc-ddd line {
+    stroke: #ddd;
+  }
+  .domain {
+    display: none;
+  }
+}
