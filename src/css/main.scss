@@ -39,9 +39,14 @@ $pc:     #868686;
     margin-bottom: 24px;
     padding-top: 6px;
 
-    @include mq($from: desktop) {
-        width: 230px;
+    @include mq($from: desktop-wide) {
+        width: 120px;
         float: left;
+        margin-right: 10px;
+    }
+
+    @include mq($from: wide) {
+        width: 230px;
         margin-right: 10px;
     }
 
