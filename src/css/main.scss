@@ -121,12 +121,7 @@ $pc:     #868686;
   padding-right: 0;
 }
 
-.ul__party li:first-child::after {
-  content: "Labour";
-}
-.ul__party li:last-child::after {
-  content: "Conservatives";
-}
+
 
 .ul__party .rect {
     width: 10px;
