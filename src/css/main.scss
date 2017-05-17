@@ -104,11 +104,11 @@ $pc:     #868686;
     float: right;
 }
 .ul__party li {
-    padding-right: 15px;
-    float: left;
-    font-family: "Guardian Text Sans Web","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    padding-right: 10px;
+    /* float: left; */
+    font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 14px;
-    margin-top: 12px;
+    display: inline-block;
 }
 .ul__party li:first-child .rect {
     margin-left: 0;
@@ -117,11 +117,63 @@ $pc:     #868686;
     padding-right: 0;
 }
 
+.keyholder-div{
+    position: relative;
+    margin-top: 12px;
+}
+
+.keyholder-div-item{
+    padding: 0 20px 6px 0;
+    font-family: "Guardian Text Sans Web", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    display:inline-block;
+    float:left;
+}
+
+.keyholder-div-item-label{
+    margin-top:3px;
+}
+
 .rect {
         width: 10px;
         height: 18px;
         margin-right: 5px;
+        margin-top:0;
         border-radius: 2px;
         display: inline-block;
         vertical-align: top;
     }
+
+#daybyday ul li:before{
+    content:'';
+    display: none !important;
+    background-color: #FFF !important;
+}
+
+#daybyday ul li a, #daybyday ul li a:active, #daybyday ul li a:visited, #daybyday ul li a:hover{
+    text-decoration: none !important;
+    background-color: #EEE ;
+    text-shadow: none !important;
+    background-image: none !important;
+}
+
+.prose ul>li:before{
+    display: none !important;
+    background-image: none !important;
+}
+
+#daybyday ul li a {
+    text-shadow: none !important;
+    background-image: none !important;
+}
+
+
+// .prose ul>li:before{
+//     height: 0 !important;
+//     width: 0 !important;
+//     background-color:#FFF !important;
+// }    
+
+
+
