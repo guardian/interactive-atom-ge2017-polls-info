@@ -158,3 +158,19 @@ $pc:     #868686;
             margin-left: 0;
         }
     }
+
+    .c-advert {
+
+      display: inline-block;
+      .js-ad-slot {
+        display: inline-block;
+      }
+
+      @include mq(1140px){
+          margin-left: 160px;
+      }
+
+      @include mq(wide){
+          margin-left: 240px;
+      }
+    }
