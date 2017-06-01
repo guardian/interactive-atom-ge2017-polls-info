@@ -48,6 +48,9 @@
         </div>
         <!-- end of pollchart -->
 
+
+
+
       {{else}}
 
       <div id="daybyday">
@@ -64,4 +67,29 @@
 
     </div>
 </div>
+
+{{#if @first}}
+
+<div class='poll-tracker__block'>
+    <div class="c-advert interactive-ad-banner">
+      <div class="ad-wrapper--desktop hide-until-tablet">
+          <div id="dfp-ad--inline1"
+               class="js-ad-slot ad-slot ad-slot--banner-ad ad-slot--banner-ad-desktop"
+               data-link-name="ad slot banner"
+               data-name="banner"
+               data-tablet="1,1|2,2|728,90"
+               data-desktop="1,1|2,2|88,70|728,90|940,230|900,250"></div>
+      </div>
+
+      <div class="ad-wrapper--mobile mobile-only">
+          <div id="dfp-ad--inline1Mobile"
+               class="js-ad-slot ad-slot ad-slot--inline ad-slot--inline1"
+               data-link-name="ad slot inline1Mobile"
+               data-name="inline1Mobile"
+               data-mobile="1,1|2,2|300,250|fluid"></div>
+      </div>
+    </div>
+</div>
+{{/if}}
+
 {{/text}}
