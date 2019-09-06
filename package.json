@@ -48,6 +48,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "d3": "^5.11.0",
     "handlebars": "^4.0.6",
     "mustache": "^2.3.0",
     "request-promise": "^4.1.1",
