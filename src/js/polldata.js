@@ -1,99 +1,92 @@
-/* Data manipulation for pollchart */
-define([
-], function(
-) {
-  'use strict';  
+export default function polldata() {
+
+
   var dayAvg = 14,
-      dayConst = 86400000,
-      //daySpecial = +(new Date(2015, 1, 4)),
-      partyList = ["con", "lab", "ldem", "ukip", "grn"]; 
-      //pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"],
-      //pGroup2 = ["ComResP", "ComResO", "ICM", "Ipsos", "TNS", "Survation"];
-  
-  /*function averageArray(array) {
-    var sum = array.reduce(function(preVal, curVal) {
-        return preVal + curVal;
-        });
-    return sum / array.length;
-  }*/
+    dayConst = 86400000,
+    partyList = ["con", "lab", "ldem", "ukip", "grn"];
+
 
   return {
     //function extractDataByKey(data, key) {
-    extractDataByKey: function(data, key) {
-      return data.map(function(d) {
-          return d[key];
-          }).sort().filter(function(d, index, array) {
-            //unique
-            return d !== array[index - 1];
-            });     
-    },
+    // extractDataByKey: function (data, key) {
+    //   return data.map(function (d) {
+    //     return d[key];
+    //   }).sort().filter(function (d, index, array) {
+    //     //unique
+    //     return d !== array[index - 1];
+    //   });
+    // },
 
     //function composeDataByParty(data) {
-    composeDataByParty: function(data, dataAvg, dateList) {
+    composeDataByParty: function (data, dataAvg, dateList) {
       var pollsterList = this.extractDataByKey(data, "pollster"),
-          dataByParty,
-          dataByPartyPollster,
-          dataByPartyDate;
-      
+        dataByParty,
+        dataByPartyPollster,
+        dataByPartyDate;
+
       // data grouped by party  
-      dataByParty = partyList.map(function(party) {
+      dataByParty = partyList.map(function (party) {
         return {
           party: party,
-          values: data.map(function(d) {
+          values: data.map(function (d) {
             return {
               date: d.timestamp,
               pollster: d.pollster,
               vi: d[party]
-            };})//end of data.map (values)
-      };});//end of partyList.map
+            };
+          })//end of data.map (values)
+        };
+      });//end of partyList.map
 
       // data grouped by party and pollster  
-      dataByPartyPollster = dataByParty.map(function(d) {
+      dataByPartyPollster = dataByParty.map(function (d) {
         var datum = d.values;
         return {
           party: d.party,
 
-          pollster: pollsterList.map(function(pollster) {
+          pollster: pollsterList.map(function (pollster) {
             return {
               pollster: pollster,
-              values: datum.filter(function(p) {
+              values: datum.filter(function (p) {
                 return p.pollster === pollster;
-              }).map(function(p) {
+              }).map(function (p) {
                 return {
                   party: d.party,
                   pollster: p.pollster,
                   date: p.date,
                   vi: p.vi
-              };
-            }) //end of datum.filter (values)
-          };}), //end of pollster.map
-      };});
+                };
+              }) //end of datum.filter (values)
+            };
+          }), //end of pollster.map
+        };
+      });
 
       // data grouped by party and pollster  
-      dataByPartyDate = dataByParty.map(function(d) {
+      dataByPartyDate = dataByParty.map(function (d) {
         var datum = d.values;
         //testDate = (+parseDate("15/02/2015"));
-        
+
         return {
           party: d.party,
 
-          values: dateList.map(function(date) {
-            var viDayList, 
-            viAvgList = [],
-            viAvg;  
-                        
+          values: dateList.map(function (date) {
+            var viDayList,
+              viAvgList = [],
+              viAvg;
+
             function findViListByGroup(group, p) {
-              return datum.filter(function(d) {
+              return datum.filter(function (d) {
                 switch (group) {
-                  case 1: return (d.pollster === p) && (d.date <= date) && (d.date > (date - dayConst*dayAvg));
-                  case 2: return (d.pollster === p) && (d.date <= date); 
+                  case 1: return (d.pollster === p) && (d.date <= date) && (d.date > (date - dayConst * dayAvg));
+                  case 2: return (d.pollster === p) && (d.date <= date);
                   default: console.err("wrong group!");
                 }
-              }).map(function(d) {
+              }).map(function (d) {
                 return d.vi;
               });
             }
-           
+
             // Get average vi (viAvg) value 
             /*if (date <= daySpecial) {
             
@@ -106,7 +99,7 @@ define([
                   viAvgList.push(averageArray(li));
               }});
               //if (date === testDate) { console.log("---");}  
-
+    
               // 1b. Take the nearest vi from the past (if any)
               pGroup2.forEach(function(d) {
                 var li = findViListByGroup(2, d),
@@ -122,13 +115,13 @@ define([
             
             } else {
             */
-              /* Date after Feb. 2nd */
-              // 2. avg vi from dataAvg (precalculated by a script)
-              dataAvg.filter(function(dAvg) {
-                if (dAvg.timestamp === date) {
-                  viAvg = dAvg[d.party];
-                }
-              });
+            /* Date after Feb. 2nd */
+            // 2. avg vi from dataAvg (precalculated by a script)
+            dataAvg.filter(function (dAvg) {
+              if (dAvg.timestamp === date) {
+                viAvg = dAvg[d.party];
+              }
+            });
             //}
 
             //TODO: add precaution conditions 
@@ -136,28 +129,28 @@ define([
               //console.log(viAvg);
               viAvg = Math.round(viAvg * 100) / 100;
               //console.log(viAvg, " [r]");
-            } 
-            
+            }
+
             // a list of vi of the day (viDayList)
             // for drawing the event area for vi average
-            viDayList = datum.filter(function(d) { 
-              return d.date === date; 
-            }).map(function(d) { 
-              return d.vi; 
+            viDayList = datum.filter(function (d) {
+              return d.date === date;
+            }).map(function (d) {
+              return d.vi;
             });
-            
+
             // append viAvg if poll data is empty on this day
             if (viDayList.length === 0) {
               viDayList[0] = viAvg;
-            }      
-            
+            }
+
             //console.log(new Date(date), date, viAvg, viDayList);
             return {
               party: d.party,
               date: date,
               vi: viAvg,
-              viMin: Math.min.apply(null, viDayList), 
-              viMax: Math.max.apply(null, viDayList) 
+              viMin: Math.min.apply(null, viDayList),
+              viMax: Math.max.apply(null, viDayList)
               //viDayList: viDayList,
               //viAvgList: viAvgList,
             };
@@ -165,12 +158,25 @@ define([
         };
       }); //end of dataByParty.map
 
-      return { 
+      return {
         date: dataByPartyDate,
         pollster: dataByPartyPollster
       };
     }
 
   }; //end of polldata's return
-   
-});
+
+
+
+
+}
+
+
+export function extractDataByKey (data,key) {
+    return data.map(function (d) {
+      return d[key];
+    }).sort().filter(function (d, index, array) {
+      //unique
+      return d !== array[index - 1];
+    });
+}
