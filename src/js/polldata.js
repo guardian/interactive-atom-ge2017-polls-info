@@ -3,9 +3,10 @@ export default function polldata () {
   var dayAvg = 14,
       dayConst = 86400000,
       //daySpecial = +(new Date(2015, 1, 4)),
-      partyList = ["con", "lab", "ldem", "ukip", "grn"]; 
-      //pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"],
+      partyList = ["con", "lab", "ldem", "ukip", "grn"], 
       //pGroup2 = ["ComResP", "ComResO", "ICM", "Ipsos", "TNS", "Survation"];
+      pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"];
+
   
   /*function averageArray(array) {
     var sum = array.reduce(function(preVal, curVal) {
