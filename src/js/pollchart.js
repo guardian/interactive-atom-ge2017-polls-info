@@ -310,18 +310,14 @@ export default function pollchart(rawData) {
         function addLines(svgObj) {
             var gh1 = svgObj.insert("g", ":first-child").attr("class", "hightlight1");
             gl1 = gh1.append("line").attr("class", "line-theday");
-            gt1 = gh1.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
+            gt1 = gh1.append("text").attr("class", "ff-ss fz-12").attr("fill", "sax#767676");
             var gh2 = svgObj.insert("g", ":first-child").attr("class", "hightlight2");
             gl2 = gh2.append("line").attr("class", "line-theday");
             gt2 = gh2.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
-            var gh3 = svgObj.insert("g", ":first-child").attr("class", "hightlight2");
-            gl3 = gh3.append("line").attr("class", "line-theday");
-            gt3 = gh3.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
         }
 
         function drawLines() {
             var xs = [
-                x(+parseDate("23/06/2016")),
                 x(+parseDate("08/06/2017")),
                 x(+parseDate("24/07/2019")),
             ];
@@ -330,20 +326,13 @@ export default function pollchart(rawData) {
                 .attr("x2", xs[0]).attr("y2", y(coord.y) - 10);
             gt1
                 .attr("x", xs[0] + 5).attr("y", y(coord.y))
-                .text("Brexit Referendum");
+                .text("2017 UK General Election");
             gl2
                 .attr("x1", xs[1]).attr("y1", y(coord.x))
                 .attr("x2", xs[1]).attr("y2", y(coord.y) - 10);
             gt2
                 .attr("x", xs[1] + 5).attr("y", y(coord.y))
-                .text("2017 UK General Election")
-            gl3
-                .attr("x1", xs[2]).attr("y1", y(coord.x))
-                .attr("x2", xs[2]).attr("y2", y(coord.y) - 10);
-            gt3
-                .attr("x", xs[2] + 5).attr("y", y(coord.y))
                 .text("Boris Johnson becomes Prime Minister")
-                
         }
 
         // avg path
@@ -674,6 +663,12 @@ export default function pollchart(rawData) {
                             break;
                         case "ldem":
                             ys.ldem = dd[4].values[i].vi > dd[2].values[i].vi ? 20 : -10;
+                            break;
+                        case "brx":
+                            ys.brx = dd[4].values[i].vi > dd[2].values[i].vi ? -10 : 20;
+                            break;
+                        case "oth":
+                            ys.oth = dd[4].values[i].vi > dd[2].values[i].vi ? 20 : -10;
                             break;
                     }
                     return y(d.vi) + ys[d.party];

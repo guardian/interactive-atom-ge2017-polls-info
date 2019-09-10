@@ -5,12 +5,12 @@ $con:    #056da1;
 $grn:    #86b939;
 $lab:    #c70000;
 $ldem:   #ef7e21;
-$others: #dadada;
+$oth: #dadada;
 $snp:    #7b226a;
 $brx:    #13bece;   
 $ukip:   #7b226a;
-$dup:    $880105;
-$sdlp:   $others;
+$dup:    #880105;
+$sdlp:   $oth;
 $pc:     #3f8333;
 
 @import "mq";
@@ -56,7 +56,7 @@ $pc:     #3f8333;
 .bgc-brx    { background-color: $brx; }
 .bgc-dup    { background-color: $dup; }
 .bgc-sdlp   { background-color: $sdlp; }
-.bgc-others { background-color: $others; }
+.bgc-oth    { background-color: $oth; }
 
 .bgc-white      { background-color: #FFF;}
 .bgc-grey-light { background-color: #EEE; }
