@@ -1,19 +1,7 @@
-// define([
-//   'd3',
-//   'hammer.js',
-//   'pollchart/polldata.js'
-// ], function(
-//   d3,
-//   Hammer,
-//   polldata
-// ) {
-//   'use strict';
 import * as d3 from "d3"
-
-//import Hammer from './hammer.js'
 import polldata from './polldata.js'
 
-var partyList = ["con", "lab", "ldem", "ukip", "grn"];
+var partyList = ["con", "lab", "ldem", "ukip", "grn", "brx"];
 
 function extractDataByKey(data, key) {
     return data.map(function(d) {
@@ -193,7 +181,8 @@ export default function pollchart(rawData) {
             lab: "Lab",
             ukip: "UKIP",
             ldem: "LD",
-            grn: "Green"
+            grn: "Green",
+            brx: "Brexit"
         };
 
     var data, dataAvg, dataset,
@@ -229,7 +218,7 @@ export default function pollchart(rawData) {
         /* SVG */
         // x, y axes; circle, path, area (polygon as range), text
         var gx, gy, gp, ga, gr,
-            gl1, gl2, gt1, gt2,
+            gl1, gl2, gt1, gt2, gl3, gt3,
             gtAvg, gtVi, gcPoll, gcDate;
 
         // Add the svg
@@ -264,7 +253,7 @@ export default function pollchart(rawData) {
             d.timestamp = +parseDate(d.date);
             return d;
         }).filter(function(d) {
-            // only use daya since the beginning of Dec.
+            // only use days since the beginning of Dec.
             return d.timestamp >= (+parseDate("01/12/2019"));
         });
 
@@ -327,25 +316,36 @@ export default function pollchart(rawData) {
             var gh2 = svgObj.insert("g", ":first-child").attr("class", "hightlight2");
             gl2 = gh2.append("line").attr("class", "line-theday");
             gt2 = gh2.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
+            var gh3 = svgObj.insert("g", ":first-child").attr("class", "hightlight2");
+            gl3 = gh3.append("line").attr("class", "line-theday");
+            gt3 = gh3.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
         }
 
         function drawLines() {
             var xs = [
-                x(+parseDate("07/05/2015")),
                 x(+parseDate("23/06/2016")),
+                x(+parseDate("08/06/2017")),
+                x(+parseDate("24/07/2019")),
             ];
             gl1
                 .attr("x1", xs[0]).attr("y1", y(coord.x))
                 .attr("x2", xs[0]).attr("y2", y(coord.y) - 10);
             gt1
                 .attr("x", xs[0] + 5).attr("y", y(coord.y))
-                .text("7 May 2015");
+                .text("Brexit Referendum");
             gl2
                 .attr("x1", xs[1]).attr("y1", y(coord.x))
                 .attr("x2", xs[1]).attr("y2", y(coord.y) - 10);
             gt2
                 .attr("x", xs[1] + 5).attr("y", y(coord.y))
-                .text("23 Jun 2016");
+                .text("2017 UK General Election")
+            gl3
+                .attr("x1", xs[2]).attr("y1", y(coord.x))
+                .attr("x2", xs[2]).attr("y2", y(coord.y) - 10);
+            gt3
+                .attr("x", xs[2] + 5).attr("y", y(coord.y))
+                .text("Boris Johnson becomes Prime Minister")
+                
         }
 
         // avg path
