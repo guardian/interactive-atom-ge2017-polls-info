@@ -183,7 +183,6 @@ function composeDataByParty(data, dataAvg, dateList) {
     };
 }
 
-
 export default function pollchart(rawData) {
     console.log('running')
     // Data:
@@ -200,7 +199,6 @@ export default function pollchart(rawData) {
     var data, dataAvg, dataset,
         svgParty, svgPolls, svgDates, svgRects,
         dateList;
-
 
     // Date format:
     var dateStrX, dateEndX, // dates for axes drawing
@@ -227,7 +225,6 @@ export default function pollchart(rawData) {
             y: 45
         };
 
-
     function render(rawData) {
         /* SVG */
         // x, y axes; circle, path, area (polygon as range), text
@@ -248,7 +245,6 @@ export default function pollchart(rawData) {
         }).y(function(d) {
             return y(d.vi);
         });
-
 
         /* Data */
         var dataAvgEnd;
@@ -299,9 +295,7 @@ export default function pollchart(rawData) {
         /* Window */
         setChartSize();
 
-
-        /* D3: Drawing
-        /* ******/
+        /* D3: Drawing*/
         function addCoordinate() {
             gx = svg.append("g").attr("class", "x axis ff-ss fz-12");
             gy = svg.append("g").attr("class", "y axis ff-ss fz-12");
@@ -876,11 +870,4 @@ export default function pollchart(rawData) {
     }
 
     return render(rawData);
-
 }
-
-// function render() {
-//   return {
-//     render: render
-//   };
-// };
