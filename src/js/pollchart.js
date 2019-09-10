@@ -2,7 +2,7 @@ import * as d3 from "d3"
 import Hammer from './hammer.js'
 import polldata from './polldata.js'
 
-var partyList = ["con", "lab", "ldem", "ukip", "grn", "brx"];
+var partyList = ["con", "lab", "ldem", "ukip", "grn", "brx", "oth"];
 
 function extractDataByKey(data, key) {
     return data.map(function(d) {
@@ -182,7 +182,8 @@ export default function pollchart(rawData) {
             ukip: "UKIP",
             ldem: "LD",
             grn: "Green",
-            brx: "Brexit"
+            brx: "Brexit",
+            oth: "Other"
         };
 
     var data, dataAvg, dataset,
@@ -610,6 +611,12 @@ export default function pollchart(rawData) {
                         case "ukip":
                             ys.ukip = dl.ukip > dl.ldem ? -15 : 20;
                             break;
+                        case "brx":
+                            ys.brx = dl.brx > dl.ukip ? -15 : 20;
+                            break;
+                        case "oth":
+                            ys.oth = dl.oth > dl.ukip ? -15 : 20;
+                            break;
                     }
                     return y(d.value.vi) + 6 + ys[d.party] / 3;
                 })
@@ -644,7 +651,10 @@ export default function pollchart(rawData) {
                     grn: 20,
                     lab: -10,
                     ukip: -10,
-                    ldem: -10
+                    ldem: -10,
+                    brx: -10,
+                    oth: -10
+
                 };
 
             gtVi.attr("x", function(d) {
@@ -754,18 +764,6 @@ export default function pollchart(rawData) {
             drawPathWithLines();
             drawPolygons();
             drawCircles(gcPoll, 3);
-
-            /*/TODO: remove hotfix
-            var ele;
-            svg.select(".tp-circle").remove();
-            ele = document.querySelector("#pollchartTooltip");
-            console.log(ele);
-            ele.style.top = "-100px";
-            ele.style.left = "-100px";
-            ele.style.rifht = "auto";
-            eleList = ele.children;
-            eleList[2].className = "";
-            */
         }
 
         var to = null;

@@ -1,16 +1,17 @@
 $ff-s:  "Guardian Egyptian Web", Georgia, serif;
 $ff-ss: "Guardian Text Sans Web","Agate Sans", sans-serif;
 $ff-agate: "Guardian Agate Sans 1 Web","Agate Sans", sans-serif;
-$con:    #005789;
-$grn:    #33A22B;
-$lab:    #E31F26;
-$ldem:   #FFB900;
-$others: #B3B3B4;
-$snp:    #FCDD03;
-$ukip:   #7D0069;
-$dup:    $others;
-$sdlp:    $others;
-$pc:     #868686;
+$con:    #056da1;
+$grn:    #86b939;
+$lab:    #c70000;
+$ldem:   #ef7e21;
+$others: #dadada;
+$snp:    #7b226a;
+$brx:    #13bece;   
+$ukip:   #7b226a;
+$dup:    $880105;
+$sdlp:   $others;
+$pc:     #3f8333;
 
 @import "mq";
 @import "fonts";
@@ -33,8 +34,6 @@ $pc:     #868686;
   overflow: hidden;
 }
 
-
-
 .poll-placeholder, .poll-placeholder-two {
   min-height: 400px;
   // background-color: aqua;
@@ -47,7 +46,6 @@ $pc:     #868686;
   }
 }
 
-
 // backgound colors: (bgc-)
 .bgc-con    { background-color: $con; }
 .bgc-grn    { background-color: $grn; }
@@ -55,8 +53,9 @@ $pc:     #868686;
 .bgc-snp    { background-color: $snp; }
 .bgc-ldem   { background-color: $ldem; }
 .bgc-ukip   { background-color: $ukip; }
+.bgc-brx    { background-color: $brx; }
 .bgc-dup    { background-color: $dup; }
-.bgc-sdlp    { background-color: $sdlp; }
+.bgc-sdlp   { background-color: $sdlp; }
 .bgc-others { background-color: $others; }
 
 .bgc-white      { background-color: #FFF;}
@@ -123,7 +122,6 @@ $pc:     #868686;
         vertical-align: top;
     }
 
-
 #daybyday ul li:before{
     content:'';
     display: none !important;
@@ -147,17 +145,11 @@ $pc:     #868686;
     background-image: none !important;
 }
 
-
 // .prose ul>li:before{
 //     height: 0 !important;
 //     width: 0 !important;
 //     background-color:#FFF !important;
 // }    
-
-
-
-
-
 
     .content__main-column--interactive, .article__body {
 
@@ -184,7 +176,6 @@ $pc:     #868686;
             }
 
     }
-
 
     .poll-tracker__text {
         width: 100%;
@@ -227,4 +218,3 @@ $pc:     #868686;
           margin-left: 240px;
       }
     }
-
