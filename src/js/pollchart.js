@@ -10,7 +10,7 @@
 //   'use strict';
 import * as d3 from "d3"
 
-//import Hammer from './hammer.js'
+import Hammer from './hammer.js'
 import polldata from './polldata.js'
 
 var partyList = ["con", "lab", "ldem", "ukip", "grn"];
@@ -256,8 +256,8 @@ export default function pollchart(rawData) {
         data = rawData.sheets['vi-continuous-series'];
 
         //var dataAvgWrong = rawData.sheets['Con_Adj Log'];
-        var dataAvgWrong = rawData.sheets['vi-continuous-series'];
-        dataAvg = dataAvgWrong.reverse().reverse();
+        var dataAvgWrong = rawData.sheets['calcs2019'];
+        dataAvg = dataAvgWrong.reverse();
         dataAvgEnd = [dataAvg[0]];
         //rawData.sheets['Constituency_adjustments'];
         //console.log("poll:", data);

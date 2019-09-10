@@ -3,8 +3,7 @@ import pollchart from './pollchart.js'
 //import colours from "./palette"
 // TO DO: Import seatscharts/commons
 
-var newLink = "docsdata-test/1azy_WeKw4qLydt2TVRMTzx5Rz-yav5vGY3vRyF_3InE";
-var jsonSrc = "https://interactive.guim.co.uk/" + newLink + ".json";
+var jsonSrc = "https://interactive.guim.co.uk/docsdata-test/1li4b1KQ33q9mZKJSU0c6vgD35EoDA8c5m5LYOZ4gVr8.json";
 
 
 d3.json(jsonSrc).then(data => {
