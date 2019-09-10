@@ -185,7 +185,6 @@ function composeDataByParty(data, dataAvg, dateList) {
 
 
 export default function pollchart(rawData) {
-    console.log('running')
     // Data:
     var dayUnit,
         dayConst = 86400000,
@@ -242,7 +241,6 @@ export default function pollchart(rawData) {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         // Define the line
-        console.log(d3)
         var liner = d3.line().x(function(d) {
             return x(d.date);
         }).y(function(d) {
@@ -287,9 +285,7 @@ export default function pollchart(rawData) {
         // Compose data
         // extract dates from both polls (data) and avg (dataAvg) datasets
         dateList = extractDataByKey(data.concat(dataAvg), "timestamp");
-        console.log(dateList);
         dateList = dateList.filter(d => d != 0)
-        console.log(dateList);
 
         dataset = composeDataByParty(data, dataAvg, dateList);
         //console.log(dateList);
@@ -829,13 +825,13 @@ export default function pollchart(rawData) {
         if (width < (660 - 10)) {
             dateStrX = (+parseDate(begin)) - 5 * dayConst;
             dateEndX = (+parseDate(today)) + 120 * dayConst;
-            xAxis.ticks(d3.time.year);
+            xAxis.ticks(d3.timeYear);
             xAxisTextFormat = formatYear;
         } else {
             dateStrX = (+parseDate(begin)) - 10 * dayConst;
             dateEndX = (+parseDate(today)) + 60 * dayConst;
-            xAxis.ticks(d3.time.mon);
-            xAxisTextFormat = d3.time.utc; //formatMonth;
+            xAxis.ticks(d3.timeMonth);
+            xAxisTextFormat = formatMonth; //formatMonth;
         }
 
         // Calculate dayUnit
