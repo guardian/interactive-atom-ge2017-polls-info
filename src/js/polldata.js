@@ -167,7 +167,5 @@ export default function polldata () {
         pollster: dataByPartyPollster
       };
     }
-
   }; //end of polldata's return
-   
 }

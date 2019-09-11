@@ -1,30 +1,11 @@
-// define([
-//     'd3'
-// ], function(
-//     d3
-// ) {
-//    'use strict';
-
-
 import * as d3 from 'd3'
 
 export default function DayByDay(data, options) {
 	var current_status = 0;
 	updateData();
 
-//	var max = d3.max(data.map(d => d3.max(d.polls.map(v => parseInt(v.value,10)))))
-
-	// var max = d3.max(data.map(function (d) {
-	// 	console.log(d);
-	// 	return d3.max(d.polls, function (v) {
-	// 		console.log(v)
-	// 		return parseInt(v.value, 10);
-	// 	})
-	// }));
-
-//	var MAX = Math.ceil(max / 10) * 10;
-
-// HACK: make the range run to 45%, rather than dynamically set it to the 10-point range in which the biggest poll result for the biggest party across the whole dataset occurs
+// HACK: make the range run to 45%, rather than dynamically set it to the 10-point range 
+// in which the biggest poll result for the biggest party across the whole dataset occurs
 
 var MAX = 45;
 	var xscale = d3.scaleLinear().domain([0, MAX]).range([0, 1]);
@@ -40,7 +21,6 @@ var MAX = 45;
 		var bgImage = generateBackground();
 		applyBackground(bgImage);
 	}
-
 
 	var to = null;
 	window.addEventListener('resize', function (event) {
@@ -80,7 +60,6 @@ var MAX = 45;
 			.attr("class", "perc");
 
 		this.set = function (polls, index) {
-
 
 			tooltipRow
 				.style("top", function (d) {
@@ -244,17 +223,17 @@ var MAX = 45;
 		xaxis.append("div")
 			.attr("class", "label min")
 			.append("span")
-			.text(d3.format("p")(xscale.range()[0]))
+			.text(d3.format(",")(xscale.range()[0]) + "%")
 
 		xaxis.append("div")
 			.attr("class", "label max")
 			.append("span")
-			.text(d3.format("p")(xscale.domain()[1] / 100))
+			.text(d3.format(",")(xscale.domain()[1]) + "%")
 
 		d3.select(options.container + " div#pollsTable div.xaxis")
 			.append("span")
 			.attr("class", "label change")
-			.text("change from 2015")
+			.text("Change from 2017")
 	}
 	function update() {
 

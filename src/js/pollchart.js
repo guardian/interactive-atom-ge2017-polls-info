@@ -88,42 +88,11 @@ function composeDataByParty(data, dataAvg, dateList) {
                     });
                 }
 
-                // Get average vi (viAvg) value 
-                /*if (date <= daySpecial) {
-                
-                  /* Date before Feb. 2nd * /
-                  // 1a. Take the vi from the past 14 days and average it (if any)
-                  pGroup1.forEach(function(d) {
-                    var li = findViListByGroup(1, d);
-                    //if (date === testDate) { console.log(li, averageArray(li), d); }
-                    if (li.length !== 0) {
-                      viAvgList.push(averageArray(li));
-                  }});
-                  //if (date === testDate) { console.log("---");}  
-
-                  // 1b. Take the nearest vi from the past (if any)
-                  pGroup2.forEach(function(d) {
-                    var li = findViListByGroup(2, d),
-                    len = li.length;
-                    // if (date === testDate) { console.log(li, li[len-1], d);}  
-                    if (len !== 0) {
-                      viAvgList.push(li[len-1]);
-                  }});
-                  
-                  // 1. avg vi from calculation 
-                  console.log(viAvgList);  
-                  viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
-                
-                } else {
-                */
-                /* Date after Feb. 2nd */
-                // 2. avg vi from dataAvg (precalculated by a script)
                 dataAvg.filter(function(dAvg) {
                     if (dAvg.timestamp === date) {
                         viAvg = dAvg[d.party];
                     }
                 });
-                //}
 
                 //TODO: add precaution conditions 
                 if (viAvg !== undefined) {
@@ -200,6 +169,7 @@ export default function pollchart(rawData) {
         dateFormat = "%d/%m/%Y",
         xAxisTextFormat,
         formatYear = d3.timeFormat("%Y"),
+        formatMonthYear = d3.timeFormat("%M,%Y"),
         formatMon = d3.timeFormat("%b"),
         formatMonth = d3.timeFormat("%B"),
         formatPercent = d3.format(".0%");
@@ -432,43 +402,6 @@ export default function pollchart(rawData) {
                         }
                     });
             }
-
-            // pan evnt using hammerjs
-            // var el = document.querySelector(".dates"),
-            //   op = { preventDefault: true },
-            //   hr = new Hammer(el, op),
-            //   preCN = null, // CN, classname
-            //   curCN,
-            //   strCN,
-            //   numCN;
-
-            // hr.get("pan").set({ direction: Hammer.DIRECTION_HORIZONTAL });
-
-            // hr.on("panstart", function (e) {
-            //   strCN = e.target.className.baseVal;
-            //   var s = strCN.slice(1);
-            //   numCN = parseInt(s);
-            // });
-
-            // hr.on("panmove", function (e) {
-            //   var d = Math.round(e.deltaX / dayUnit);
-            //   curCN = "t" + (numCN + dayConst * d);
-            //   // if pan position has not change
-            //   if (preCN === curCN) { return; }
-            //   // remove highlight if any
-            //   if (preCN !== null) {
-            //     for (var i = 0; i < nl.length; i++) { d3.select(nl[i]).classed("op-0", true); }
-            //   }
-            //   // add hightlight
-            //   nl = document.querySelectorAll("." + curCN + ".op-0");
-            //   for (var i = 0; i < nl.length; i++) { d3.select(nl[i]).classed("op-0", false); }
-            //   preCN = curCN;
-            // });
-
-            // hr.on("panend", function () {
-            //   // remove last highlight
-            //   for (var i = 0; i < nl.length; i++) { d3.select(nl[i]).classed("op-0", true); }
-            // });
         }
 
         function addCircle(svgObj, className) {
@@ -825,13 +758,19 @@ export default function pollchart(rawData) {
         s.setAttribute("height", h);
 
         // Ranges of the charts
-        x = d3.scaleTime().range([0, width]);
+        x = d3.scaleTime()
+        // .domain([new Date(2017, 6, 24), new Date(2019, 9, 3)])
+        .range([0, width]);
         y = d3.scaleLinear().range([height, 0]);
 
         // Define the axes
-        xAxis = d3.axisBottom().scale(x),
-            yAxis = d3.axisRight().scale(y)
-            .ticks(5).tickSize(width)
+        xAxis = d3.axisBottom().scale(x)
+            // .ticks(6)
+            // .tickSize(length)
+            // .tickValues(["July", "October", "2018", "March", "June"]),
+        yAxis = d3.axisRight().scale(y)
+            .ticks(5)
+            .tickSize(width)
             .tickFormat(function(d) {
                 return d === 40 ? formatPercent(d / 100) : d;
             });
@@ -839,7 +778,7 @@ export default function pollchart(rawData) {
         // for mobile
         var today = dataAvg[0].date;
         var begin = dataAvg[dataAvg.length - 1].date;
-        if (width < (660 - 10)) {
+        if (width < (1260 - 10)) {
             dateStrX = (+parseDate(begin)) - 5 * dayConst;
             dateEndX = (+parseDate(today)) + 120 * dayConst;
             xAxis.ticks(d3.timeYear);
