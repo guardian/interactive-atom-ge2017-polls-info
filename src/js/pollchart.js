@@ -85,42 +85,12 @@ function composeDataByParty(data, dataAvg, dateList) {
                     });
                 }
 
-                // Get average vi (viAvg) value 
-                /*if (date <= daySpecial) {
-                
-                  /* Date before Feb. 2nd * /
-                  // 1a. Take the vi from the past 14 days and average it (if any)
-                  pGroup1.forEach(function(d) {
-                    var li = findViListByGroup(1, d);
-                    //if (date === testDate) { console.log(li, averageArray(li), d); }
-                    if (li.length !== 0) {
-                      viAvgList.push(averageArray(li));
-                  }});
-                  //if (date === testDate) { console.log("---");}  
-
-                  // 1b. Take the nearest vi from the past (if any)
-                  pGroup2.forEach(function(d) {
-                    var li = findViListByGroup(2, d),
-                    len = li.length;
-                    // if (date === testDate) { console.log(li, li[len-1], d);}  
-                    if (len !== 0) {
-                      viAvgList.push(li[len-1]);
-                  }});
-                  
-                  // 1. avg vi from calculation 
-                  console.log(viAvgList);  
-                  viAvg = Math.round(averageArray(viAvgList) * 100) / 100; 
-                
-                } else {
-                */
-                /* Date after Feb. 2nd */
-                // 2. avg vi from dataAvg (precalculated by a script)
                 dataAvg.filter(function(dAvg) {
                     if (dAvg.timestamp === date) {
                         viAvg = dAvg[d.party];
                     }
                 });
-                //}
+                
 
                 //TODO: add precaution conditions 
                 if (viAvg !== undefined) {
@@ -275,9 +245,6 @@ export default function pollchart(rawData) {
         dateList = dateList.filter(d => d != 0)
 
         dataset = composeDataByParty(data, dataAvg, dateList);
-        //console.log(dateList);
-        //console.log(dataAvg);
-        //console.log(dataset.date);
 
         /* Window */
         setChartSize();
