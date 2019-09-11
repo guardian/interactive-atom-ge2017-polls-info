@@ -1,5 +1,6 @@
 import * as d3 from "d3"
-import Hammer from './hammer.js'
+
+//import Hammer from './hammer.js'
 import polldata from './polldata.js'
 
 var partyList = ["con", "lab", "ldem", "ukip", "grn", "brx", "oth"];
@@ -14,6 +15,7 @@ function extractDataByKey(data, key) {
 }
 
 function composeDataByParty(data, dataAvg, dateList) {
+  console.log(data)
     var pollsterList = extractDataByKey(data, "pollster"),
         dataByParty,
         dataByPartyPollster,
@@ -56,6 +58,7 @@ function composeDataByParty(data, dataAvg, dateList) {
             }), //end of pollster.map
         };
     });
+    //console.log(dataByPartyPollster)
 
     // data grouped by party and pollster  
     dataByPartyDate = dataByParty.map(function(d) {
@@ -156,6 +159,8 @@ function composeDataByParty(data, dataAvg, dateList) {
         };
     }); //end of dataByParty.map
 
+    console.log(dataByPartyPollster)
+
     return {
         date: dataByPartyDate,
         pollster: dataByPartyPollster,
@@ -247,15 +252,19 @@ export default function pollchart(rawData) {
         //rawData.sheets['Constituency_adjustments'];
         //console.log("poll:", data);
 
+        console.log(data)
+
         // Parse date
         data = data.map(function(d) {
             // + convert a Date object to time in milliseconds
             d.timestamp = +parseDate(d.date);
             return d;
         }).filter(function(d) {
-            // only use days since the beginning of Dec.
-            return d.timestamp >= (+parseDate("01/12/2019"));
+            // only use daya since the beginning of Dec.
+            return d.timestamp >= (+parseDate("01/01/2017"));
         });
+
+        console.log(data)
 
         // dataAvgEnd[0].date indicates when the script last ran
         // dataAvgEnd[0].currentdate is the date in reality
@@ -462,7 +471,7 @@ export default function pollchart(rawData) {
             // });
         }
 
-        /*function addCircle(svgObj, className) {
+        function addCircle(svgObj, className) {
           svgObj.append("circle")
             .attr("class", className);
         }
@@ -472,22 +481,31 @@ export default function pollchart(rawData) {
             .attr("cx", cx)
             .attr("cy", cy)
             .attr("r", r);
-        }*/
+        }
 
         function addCircles(svgObj, className, key) {
+         // console.log('addCircles')
+         // console.log(arguments)
             var g = svgObj.selectAll("circle")
                 .data(function(d) {
+                //  console.log("d from addCircles")
+                 // console.log(d)
                     return d.values;
                 })
                 .enter().append("circle")
                 //.attr("class", className);
                 .attr("class", function(d) {
+            //      console.log("circle class from addCircles");
+             //     console.log(d)
                     return "t" + d[key] + " " + className;
                 });
+           //     console.log(g)
             return g;
         }
 
         function drawCircles(gc, r) {
+          //console.log("drawCircles")
+         // console.log(arguments)
             gc.attr("cx", function(d) {
                     return x(d.date) /*+ Math.random()*10*/ ;
                 })
@@ -679,6 +697,7 @@ export default function pollchart(rawData) {
         }
 
         function drawSVGInit() {
+          console.log('svginit')
             // 1. Draw coordinate
             addCoordinate();
             drawCoordinate();
@@ -693,6 +712,7 @@ export default function pollchart(rawData) {
                 .data(dataset.date)
                 .enter().append("g")
                 .attr("class", function(d) {
+                  console.log('aint no party like')
                     return "party " + d.party;
                 });
 
@@ -703,6 +723,8 @@ export default function pollchart(rawData) {
                     return "party-dates " + d.party;
                 });
 
+                // console.log(dataset.pollster)
+
             svgPolls = svg.selectAll("party-polls")
                 .data(dataset.pollster)
                 .enter().append("g")
@@ -711,12 +733,19 @@ export default function pollchart(rawData) {
                 })
                 .selectAll("g")
                 .data(function(d) {
+                  console.log("second bit of svgpolls")
+                  console.log(d)
                     return d.pollster;
                 })
                 .enter().append("g")
                 .attr("class", function(d, index) {
+                  // THIS IS WHERE THE PROBLEM IS
+                  console.log("third half of svgpolls")
+                  console.log(d)
                     return "pollster p" + index;
                 });
+
+                console.log(svgPolls)
 
             // 2. Draw over time view
             addLines(svg);
