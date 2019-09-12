@@ -7,11 +7,10 @@ export default function DayByDay(data, options) {
 // HACK: make the range run to 45%, rather than dynamically set it to the 10-point range 
 // in which the biggest poll result for the biggest party across the whole dataset occurs
 
-var MAX = 45;
+	var MAX = 45;
+
 	var xscale = d3.scaleLinear().domain([0, MAX]).range([0, 1]);
-
 	var canvas, ctx;
-
 	var pollsters = getPollsters(data);
 	addPollsters();
 	addAxis();
@@ -31,7 +30,6 @@ var MAX = 45;
 		to = setTimeout(function () {
 			resize();
 		}, 100)
-
 	});
 
 	var tooltips = new Tooltips("#pollsTable");
@@ -127,7 +125,7 @@ var MAX = 45;
 			selected_poll = table
 				.selectAll("div.poll")
 				.sort(function (a, b) {
-					console.log("sort:", a);
+					// console.log("sort:", a);
 					if (a.rowNumber === rowNumber) {
 						return -1;
 					}
@@ -244,8 +242,6 @@ var MAX = 45;
 
 		polls.exit().remove();
 
-
-
 		var new_polls = polls.enter()
 			.append("div")
 			.attr("class", "poll")
@@ -265,9 +261,7 @@ var MAX = 45;
 							index = i;
 						}
 					})
-
 				tooltips.set(d, index);
-
 			})
 
 
@@ -277,10 +271,10 @@ var MAX = 45;
 		title.append("span")
 			.attr("class", "date")
 			.text(function (d) {
-				/*if(getWidth(1)<480) {
-					return d3.time.format("%e %b")(d.timestamp2);
-				}
-				return d3.time.format("%e %B")(d.timestamp2);*/
+				// if(getWidth(1)<480) {
+				// 	return d3.time.format("%e %b")(d.timestamp2);
+				// }
+				// return d3.time.format("%e %B")(d.timestamp2);
 				return d3.timeParse("%e %b %y")(d.timestamp2);
 			})
 		title.append("span")
@@ -321,9 +315,13 @@ var MAX = 45;
 				return d.overlap;
 			})
 
+		// ** Change From Column **
+		// Each poll will subtract from figures immediately below	
 		var sharesOfVotes = {
-			con: 36.9,
-			lab: 30.4
+			con: 43,
+			lab: 41
+			// ldem: 8
+			// brx: 0
 		}
 
 		var diffs = new_polls.append("div")
@@ -348,10 +346,8 @@ var MAX = 45;
 				var pct = Math.round((d.value - sharesOfVotes[d.party]) * 10) / 10;
 				return d3.format("+")(pct) + "% " + options.termDic[d.party];
 			})
-
-
-
 	}
+
 	function resize() {
 		if (isCanvasSupported) {
 			var bgImage = generateBackground();
@@ -359,6 +355,7 @@ var MAX = 45;
 		}
 		updateTitles();
 	}
+
 	function applyBackground(bgImage) {
 		var polls = d3.selectAll(options.container + " div.poll")
 			.select(".projection")
@@ -433,15 +430,14 @@ var MAX = 45;
 			return d.pollster;
 		}));
 		//console.log(pollsters)
-
 		return pollsters.map(function (d) {
 			return {
 				pollster: d,
 				status: 1
 			}
 		});
-
 	}
+
 	function updateTitles() {
 
 		var table = d3.select(options.container + " div#pollsTable"),
@@ -452,12 +448,12 @@ var MAX = 45;
 
 		title.select("span")
 			.text(function (d) {
-				//console.log.log("!!!!!!",getWidth(1))
-				/*if(getWidth(1)<480) {
-					return d3.time.format("%e %b")(d.timestamp2);
-				}
-				return d3.time.format("%e %B")(d.timestamp2);*/
+				// if(getWidth(1)<1260) {
+				// 	return d3.time.format("%e %b")(d.timestamp2);
+				// }
+				// return d3.time.format("%e %B")(d.timestamp2);
 				return d3.timeParse("%e %b %y")(d.timestamp2);
+				// return d3.timeFormat("%e %b %y")(d.timestamp2);
 			})
 	}
 	function updateData() {
@@ -465,7 +461,8 @@ var MAX = 45;
 
 		data.forEach(function (d) {
 			//console.log.log("aaaa",d)
-			//d.timestamp2 = format.parse(d.date);
+			// d.timestamp2 = format.parse(d.date);
+			// d.timestamp2 = timeFormat(d.date);
 			d.timestamp2 = d.date
 
 			d.status = true;
@@ -492,7 +489,7 @@ var MAX = 45;
 		data.sort(function (a, b) {
 			//return b.rowNumber-a.rowNumber;
 			//console.log(a)
-			//return (+b.timestamp2) - (+a.timestamp2);
+			// return (+b.timestamp2) - (+a.timestamp2);
 			return (+b.timestamp) - (+a.timestamp);
 		})
 	}

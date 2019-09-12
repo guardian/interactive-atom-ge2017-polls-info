@@ -15,7 +15,7 @@ function extractDataByKey(data, key) {
 }
 
 function composeDataByParty(data, dataAvg, dateList) {
-  console.log(data)
+  // console.log(data)
     var pollsterList = extractDataByKey(data, "pollster"),
         dataByParty,
         dataByPartyPollster,
@@ -128,7 +128,7 @@ function composeDataByParty(data, dataAvg, dateList) {
         };
     }); //end of dataByParty.map
 
-    console.log(dataByPartyPollster)
+    // console.log(dataByPartyPollster)
 
     return {
         date: dataByPartyDate,
@@ -222,8 +222,6 @@ export default function pollchart(rawData) {
         //rawData.sheets['Constituency_adjustments'];
         //console.log("poll:", data);
 
-        console.log(data)
-
         // Parse date
         data = data.map(function(d) {
             // + convert a Date object to time in milliseconds
@@ -233,8 +231,6 @@ export default function pollchart(rawData) {
             // only use daya since the beginning of Dec.
             return d.timestamp >= (+parseDate("01/01/2017"));
         });
-
-        console.log(data)
 
         // dataAvgEnd[0].date indicates when the script last ran
         // dataAvgEnd[0].currentdate is the date in reality
@@ -273,7 +269,7 @@ export default function pollchart(rawData) {
                 .call(xAxis)
                 .selectAll("text")
                 .attr("x", -2)
-                .style("text-anchor", "start");
+                .style("text-anchor", "middle");
             // y axis
             gy.call(yAxis);
             gy.selectAll("g")
@@ -282,14 +278,14 @@ export default function pollchart(rawData) {
                 })
                 .classed("sc-ddd", true);
             gy.selectAll("text")
-                .attr("x", 0)
+                .attr("x", 10)
                 .attr("dy", -3);
         }
 
         function addLines(svgObj) {
             var gh1 = svgObj.insert("g", ":first-child").attr("class", "hightlight1");
             gl1 = gh1.append("line").attr("class", "line-theday");
-            gt1 = gh1.append("text").attr("class", "ff-ss fz-12").attr("fill", "sax#767676");
+            gt1 = gh1.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
             var gh2 = svgObj.insert("g", ":first-child").attr("class", "hightlight2");
             gl2 = gh2.append("line").attr("class", "line-theday");
             gt2 = gh2.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
@@ -305,12 +301,17 @@ export default function pollchart(rawData) {
                 .attr("x2", xs[0]).attr("y2", y(coord.y) - 10);
             gt1
                 .attr("x", xs[0] + 5).attr("y", y(coord.y))
+                // svg.append("text")
+                // .style("stroke", "white")
+                // .style("fill", "black")
+                // .attr("class", "shadow")
                 .text("2017 UK General Election");
             gl2
                 .attr("x1", xs[1]).attr("y1", y(coord.x))
                 .attr("x2", xs[1]).attr("y2", y(coord.y) - 10);
             gt2
-                .attr("x", xs[1] + 5).attr("y", y(coord.y))
+                .attr("x", xs[1] - 5).attr("y", y(coord.y))
+                .attr("text-anchor", "end")
                 .text("Boris Johnson becomes Prime Minister")
         }
 
@@ -630,7 +631,7 @@ export default function pollchart(rawData) {
         }
 
         function drawSVGInit() {
-          console.log('svginit')
+          // console.log('svginit')
             // 1. Draw coordinate
             addCoordinate();
             drawCoordinate();
@@ -645,7 +646,7 @@ export default function pollchart(rawData) {
                 .data(dataset.date)
                 .enter().append("g")
                 .attr("class", function(d) {
-                  console.log('aint no party like')
+                  // console.log('aint no party like')
                     return "party " + d.party;
                 });
 
@@ -666,19 +667,12 @@ export default function pollchart(rawData) {
                 })
                 .selectAll("g")
                 .data(function(d) {
-                  console.log("second bit of svgpolls")
-                  console.log(d)
                     return d.pollster;
                 })
                 .enter().append("g")
                 .attr("class", function(d, index) {
-                  // THIS IS WHERE THE PROBLEM IS
-                  console.log("third half of svgpolls")
-                  console.log(d)
                     return "pollster p" + index;
                 });
-
-                console.log(svgPolls)
 
             // 2. Draw over time view
             addLines(svg);
