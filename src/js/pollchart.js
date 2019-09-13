@@ -286,31 +286,31 @@ export default function pollchart(rawData) {
             var gh1 = svgObj.insert("g", ":first-child").attr("class", "hightlight1");
             gl1 = gh1.append("line").attr("class", "line-theday");
             gt1 = gh1.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
-            var gh2 = svgObj.insert("g", ":first-child").attr("class", "hightlight2");
-            gl2 = gh2.append("line").attr("class", "line-theday");
-            gt2 = gh2.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
+            // var gh2 = svgObj.insert("g", ":first-child").attr("class", "hightlight2");
+            // gl2 = gh2.append("line").attr("class", "line-theday");
+            // gt2 = gh2.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
         }
 
         function drawLines() {
             var xs = [
-                x(+parseDate("08/06/2017")),
+                // x(+parseDate("08/06/2017")),
                 x(+parseDate("24/07/2019")),
             ];
-            gl1
-                .attr("x1", xs[0]).attr("y1", y(coord.x))
-                .attr("x2", xs[0]).attr("y2", y(coord.y) - 10);
-            gt1
-                .attr("x", xs[0] + 5).attr("y", y(coord.y))
+            // gl1
+            //     .attr("x1", xs[0]).attr("y1", y(coord.x))
+            //     .attr("x2", xs[0]).attr("y2", y(coord.y) - 10);
+            // gt1
+            //     .attr("x", xs[0] + 5).attr("y", y(coord.y))
                 // svg.append("text")
                 // .style("stroke", "white")
                 // .style("fill", "black")
                 // .attr("class", "shadow")
-                .text("2017 UK General Election");
-            gl2
-                .attr("x1", xs[1]).attr("y1", y(coord.x))
-                .attr("x2", xs[1]).attr("y2", y(coord.y) - 10);
-            gt2
-                .attr("x", xs[1] - 5).attr("y", y(coord.y))
+                // .text("2017 UK General Election");
+            gl1
+                .attr("x1", xs[0]).attr("y1", y(coord.x))
+                .attr("x2", xs[0]).attr("y2", y(coord.y) - 10);
+            gt1
+                .attr("x", xs[0] - 5).attr("y", y(coord.y))
                 .attr("text-anchor", "end")
                 .text("Boris Johnson becomes Prime Minister")
         }
