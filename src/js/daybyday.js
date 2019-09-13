@@ -275,7 +275,8 @@ export default function DayByDay(data, options) {
 				// 	return d3.time.format("%e %b")(d.timestamp2);
 				// }
 				// return d3.time.format("%e %B")(d.timestamp2);
-				return d3.timeParse("%e %b %y")(d.timestamp2);
+				var prettyDate = d3.timeFormat("%e %b %y")
+				return prettyDate(d.timestamp);
 			})
 		title.append("span")
 			.html(function (d) {
