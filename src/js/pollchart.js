@@ -300,7 +300,7 @@ export default function pollchart(rawData) {
 
                 .attr("x", xs[0] - 5).attr("y", y(coord.y))
                 .attr("text-anchor", "end")
-                .text("Boris Johnson becomes Prime Minister")
+                .text("Boris Johnson becomes PM")
         }
 
         // avg path
