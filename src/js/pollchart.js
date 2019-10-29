@@ -3,7 +3,7 @@ import * as d3 from "d3"
 //import Hammer from './hammer.js'
 import polldata from './polldata.js'
 
-var partyList = ["con", "lab", "ldem", "ukip", "grn", "brx", "oth"];
+var partyList = ["ukip", "oth", "brx", "grn","ldem", "lab", "con"];
 
 function extractDataByKey(data, key) {
     return data.map(function(d) {
@@ -31,7 +31,7 @@ function composeDataByParty(data, dataAvg, dateList) {
                     pollster: d.pollster,
                     vi: d[party]
                 };
-            }) //end of data.map (values)
+            }).filter(p => p.vi !== "") //end of data.map (values)
         };
     }); //end of partyList.map
 
@@ -58,7 +58,6 @@ function composeDataByParty(data, dataAvg, dateList) {
             }), //end of pollster.map
         };
     });
-    //console.log(dataByPartyPollster)
 
     // data grouped by party and pollster  
     dataByPartyDate = dataByParty.map(function(d) {
@@ -151,13 +150,13 @@ export default function pollchart(rawData) {
     var dayUnit,
         dayConst = 86400000,
         termDic = {
-            con: "Con",
             lab: "Lab",
-            ukip: "UKIP",
             ldem: "LD",
-            grn: "Green",
             brx: "Brexit",
-            oth: "Other"
+            ukip: "UKIP",
+            oth: "Other",
+            grn: "Green",
+            con: "Con"
         };
 
     var data, dataAvg, dataset,
@@ -312,6 +311,9 @@ export default function pollchart(rawData) {
 
         function drawPathWithLines() {
             gp.attr("d", function(d) {
+                if(d.party === "brx") {
+                    return liner(d.values.filter(v => v.date >= 1547942400000))
+                }
                 return liner(d.values);
             });
         }
@@ -532,18 +534,18 @@ export default function pollchart(rawData) {
                         case "lab":
                             ys.lab = 0;
                             break; //dl.con  > dl.lab  ? 20 : -15; break;
-                        case "grn":
-                            ys.grn = 0;
-                            break; //dl.grn  > dl.ldem ? -15 : 20; break;
                         case "ldem":
                             ys.ldem = dl.ldem > dl.ukip ? -15 : 20;
                             break;
-                        case "ukip":
-                            ys.ukip = dl.ukip > dl.ldem ? -15 : 20;
-                            break;
+                        case "grn":
+                            ys.grn = 0;
+                            break; //dl.grn  > dl.ldem ? -15 : 20; break;
                         case "brx":
                             ys.brx = dl.brx > dl.ukip ? -15 : 20;
                             break;
+                        case "ukip":
+                            ys.ukip = dl.ukip > dl.ldem ? -15 : 20;
+                            break;  
                         case "oth":
                             ys.oth = dl.oth > dl.ukip ? -15 : 20;
                             break;
@@ -578,11 +580,11 @@ export default function pollchart(rawData) {
             var dd = dataset.date,
                 ys = {
                     con: 20,
-                    grn: 20,
                     lab: -10,
-                    ukip: -10,
                     ldem: -10,
+                    grn: 20,
                     brx: -10,
+                    ukip: -10,
                     oth: -10
 
                 };
@@ -599,11 +601,11 @@ export default function pollchart(rawData) {
                         case "lab":
                             ys.lab = dd[0].values[i].vi > dd[1].values[i].vi ? 20 : -10;
                             break;
-                        case "grn":
-                            ys.grn = dd[4].values[i].vi > dd[2].values[i].vi ? -10 : 20;
-                            break;
                         case "ldem":
                             ys.ldem = dd[4].values[i].vi > dd[2].values[i].vi ? 20 : -10;
+                            break;
+                        case "grn":
+                            ys.grn = dd[4].values[i].vi > dd[2].values[i].vi ? -10 : 20;
                             break;
                         case "brx":
                             ys.brx = dd[4].values[i].vi > dd[2].values[i].vi ? -10 : 20;
@@ -748,7 +750,7 @@ export default function pollchart(rawData) {
 
         // Define the axes
         xAxis = d3.axisBottom().scale(x)
-            // .ticks(6)
+            // .ticks(20)
             // .tickSize(length)
             // .tickValues(["July", "October", "2018", "March", "June"]),
         yAxis = d3.axisRight().scale(y)
@@ -781,7 +783,7 @@ export default function pollchart(rawData) {
         y.domain([coord.x, coord.y]);
 
         // xAxis format
-        xAxis.tickFormat(xAxisTextFormat);
+        xAxis.ticks(width < 400 ? 5 : 10)
 
         // resize the chart
         d3.select("#pollChart")
