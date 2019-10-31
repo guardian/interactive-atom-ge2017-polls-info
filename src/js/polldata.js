@@ -3,7 +3,7 @@ export default function polldata () {
   var dayAvg = 14,
       dayConst = 86400000,
       //daySpecial = +(new Date(2015, 1, 4)),
-      partyList = ["con", "lab", "ldem", "ukip", "grn", "brx", "oth"], 
+      partyList = ["con", "lab", "ldem", "grn", "brx", "oth"], 
       //pGroup2 = ["ComResP", "ComResO", "ICM", "Ipsos", "TNS", "Survation"];
       pGroup1 = ["Lord Ashcroft", "Opinium", "Populus", "YouGov"];
 

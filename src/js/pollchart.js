@@ -3,7 +3,7 @@ import * as d3 from "d3"
 //import Hammer from './hammer.js'
 import polldata from './polldata.js'
 
-var partyList = ["ukip", "oth", "brx", "grn","ldem", "lab", "con"];
+var partyList = ["oth", "brx", "grn","ldem", "lab", "con"];
 
 function extractDataByKey(data, key) {
     return data.map(function(d) {
@@ -153,7 +153,6 @@ export default function pollchart(rawData) {
             lab: "Lab",
             ldem: "LD",
             brx: "Brexit",
-            ukip: "UKIP",
             oth: "Other",
             grn: "Green",
             con: "Con"
@@ -520,7 +519,6 @@ export default function pollchart(rawData) {
                     grn: 20,
                     lab: -15,
                     ldem: -15,
-                    ukip: -5
                 };
             gtAvg.attr("text-anchor", "left")
                 .attr("x", function(d) {
@@ -584,7 +582,6 @@ export default function pollchart(rawData) {
                     ldem: -10,
                     grn: 20,
                     brx: -10,
-                    ukip: -10,
                     oth: -10
 
                 };
@@ -593,7 +590,7 @@ export default function pollchart(rawData) {
                     return x(d.date) - 3;
                 })
                 .attr("y", function(d, i) {
-                    // index ref: partyList = ["con", "lab", "ldem", "ukip", "grn"],
+                    // index ref: partyList = ["con", "lab", "ldem", "grn"],
                     switch (d.party) {
                         case "con":
                             ys.con = dd[0].values[i].vi > dd[1].values[i].vi ? -10 : 20;
