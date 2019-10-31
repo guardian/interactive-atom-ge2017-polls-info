@@ -167,7 +167,7 @@ export default function pollchart(rawData) {
         dateFormat = "%d/%m/%Y",
         xAxisTextFormat,
         formatYear = d3.timeFormat("%Y"),
-        formatMonthYear = d3.timeFormat("%M,%Y"),
+        formatMonthYear = d3.timeFormat("%M"),
         formatMon = d3.timeFormat("%b"),
         formatMonth = d3.timeFormat("%B"),
         formatPercent = d3.format(".0%");
@@ -226,7 +226,7 @@ export default function pollchart(rawData) {
             d.timestamp = +parseDate(d.date);
             return d;
         }).filter(function(d) {
-            // only use daya since the beginning of Dec.
+            // only use data since the beginning of Dec.
             return d.timestamp >= (+parseDate("01/01/2017"));
         });
 
@@ -299,7 +299,7 @@ export default function pollchart(rawData) {
 
                 .attr("x", xs[0] - 5).attr("y", y(coord.y))
                 .attr("text-anchor", "end")
-                .text("Boris Johnson becomes PM")
+                .text("Johnson becomes PM")
         }
 
         // avg path
