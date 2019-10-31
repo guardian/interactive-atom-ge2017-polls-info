@@ -108,6 +108,21 @@
     stroke-width: 1;
     shape-rendering: crispEdges;
   }
+
+  .x.axis {
+
+    .tick {
+
+      text {
+transform: translateX(.75em)
+      }
+
+        }
+      
+
+  }
+
+
   .tick.sc-ddd line {
     stroke: #ddd;
   }
