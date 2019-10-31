@@ -744,7 +744,7 @@ export default function pollchart(rawData) {
 
         // Ranges of the charts
         x = d3.scaleTime()
-        // .domain([new Date(2017, 6, 24), new Date(2019, 9, 3)])
+        .domain([new Date(2019, 0, 1), new Date(2019, 11, 12)])
         .range([0, width]);
         y = d3.scaleLinear().range([height, 0]);
 
@@ -779,7 +779,7 @@ export default function pollchart(rawData) {
         dayUnit = x(dateStrX + dayConst) - x(dateStrX);
 
         // Scale the range of the data
-        x.domain([dateStrX, dateEndX]);
+        x.domain([new Date(2019, 0, 1), new Date(2019, 11, 12)]);
         y.domain([coord.x, coord.y]);
 
         // xAxis format
