@@ -6,7 +6,7 @@ var names = {
     "libdem": "Liberal Democrats",
     "ukip": "UKIP",
     "brx": "Brexit Party",
-    "others": "Others",
+    "oth": "Others",
     "pc": "PC",
     "green": "Green Party",
     "snp": "Scottish National",
