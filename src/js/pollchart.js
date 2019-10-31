@@ -169,7 +169,7 @@ export default function pollchart(rawData) {
         formatYear = d3.timeFormat("%Y"),
         formatMonthYear = d3.timeFormat("%M"),
         formatMon = d3.timeFormat("%b"),
-        formatMonth = d3.timeFormat("%B"),
+        formatMonth = d3.timeFormat("%b"),
         formatPercent = d3.format(".0%");
     // Parse the date / time
     var parseDate = d3.timeParse(dateFormat);
@@ -749,7 +749,7 @@ export default function pollchart(rawData) {
         xAxis = d3.axisBottom().scale(x)
             // .ticks(20)
             // .tickSize(length)
-            // .tickValues(["July", "October", "2018", "March", "June"]),
+            // .tickValues(["July", "October", "2019", "March", "June"]),
         yAxis = d3.axisRight().scale(y)
             .ticks(5)
             .tickSize(width)
@@ -763,12 +763,12 @@ export default function pollchart(rawData) {
         if (width < (1260 - 10)) {
             dateStrX = (+parseDate(begin)) - 5 * dayConst;
             dateEndX = (+parseDate(today)) + 120 * dayConst;
-            xAxis.ticks(d3.timeYear);
+            xAxis.ticks(d3.timeYear).tickFormat(d3.timeFormat('%b'));
             xAxisTextFormat = formatYear;
         } else {
             dateStrX = (+parseDate(begin)) - 10 * dayConst;
             dateEndX = (+parseDate(today)) + 60 * dayConst;
-            xAxis.ticks(d3.timeMonth);
+            xAxis.ticks(d3.timeMonth).tickFormat('%b');
             xAxisTextFormat = formatMonth; //formatMonth;
         }
 
