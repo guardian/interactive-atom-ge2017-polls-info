@@ -477,13 +477,13 @@ export default function DayByDay(data, options) {
 				return obj;
 			})
 
-			d.others = 100 - d3.sum(d.polls, function (p) {
-				return p.value;
-			});
-			d.polls.push({
-				party: "others",
-				value: d.others
-			});
+			// d.others = 100 - d3.sum(d.polls, function (p) {
+			// 	return p.value;
+			// });
+			// d.polls.push({
+			// 	party: "others",
+			// 	value: d.others
+			// });
 
 		})
 
