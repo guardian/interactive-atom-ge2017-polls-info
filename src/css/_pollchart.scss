@@ -34,6 +34,7 @@
   line-height: 1.25em;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 0px 10px;
+  pointer-events: none;
 }
 #pollchartTooltip{
   position: absolute;
@@ -86,6 +87,7 @@
   .circle-poll {
     stroke: transparent;
     stroke-width: 9;
+    cursor: pointer;
   }
 
   .path-avg {

@@ -449,7 +449,7 @@ export default function pollchart(rawData) {
                         var xPos = parseFloat(d3.select(this).attr("cx")),
                             yPos = parseFloat(d3.select(this).attr("cy")),
                             xPosEnd = x(dateEndX),
-                            yShift = 60,
+                            yShift = 0,
                             date = new Date(d.date),
                             dateText = date.getDate() + " " + formatMon(date) + " " + date.getFullYear();
 
@@ -460,7 +460,8 @@ export default function pollchart(rawData) {
                         d3.select(ele).classed('d-n', false);
 
                         // top or bottom
-                        ele.style.top = ((yPos - yShift) < (-15)) ? ((yPos + yShift) + "px") : ((yPos - yShift) + "px");
+                        // ele.style.top = ((yPos - yShift) < (-15)) ? ((yPos + yShift) + "px") : ((yPos +70) + "px");
+                        ele.style.top = ((yPos +70) + "px");
                         if (xPos < (xPosEnd - 100)) {
                             // align right
                             ele.style.left = (container.offsetLeft + xPos - 5) + "px";
