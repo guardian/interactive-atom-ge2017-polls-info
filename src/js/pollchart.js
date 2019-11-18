@@ -185,7 +185,7 @@ export default function pollchart(rawData) {
         xAxis, yAxis, x, y,
         coord = {
             x: 0,
-            y: 45
+            y: 50
         };
 
     function render(rawData) {
@@ -284,11 +284,15 @@ export default function pollchart(rawData) {
             var gh1 = svgObj.insert("g", ":first-child").attr("class", "hightlight1");
             gl1 = gh1.append("line").attr("class", "line-theday");
             gt1 = gh1.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
+            var gh2 = svgObj.insert("g", ":first-child").attr("class", "hightlight1");
+            gl2 = gh2.append("line").attr("class", "line-theday");
+            gt2 = gh2.append("text").attr("class", "ff-ss fz-12").attr("fill", "#767676");
         }
 
         function drawLines() {
             var xs = [
                 x(+parseDate("24/07/2019")),
+                x(+parseDate("29/10/2019")),
                 
             ];
            
@@ -300,6 +304,15 @@ export default function pollchart(rawData) {
                 .attr("x", xs[0] - 5).attr("y", y(coord.y))
                 .attr("text-anchor", "end")
                 .text("Johnson becomes PM")
+
+            // gl2
+            //     .attr("x1", xs[1]).attr("y1", y(coord.x))
+            //     .attr("x2", xs[1]).attr("y2", y(coord.y) - 10);
+            // gt2
+
+            //     .attr("x", xs[1] - 5).attr("y", y(coord.y))
+            //     .attr("text-anchor", "end")
+            //     .text("Election called")
         }
 
         // avg path
@@ -755,7 +768,7 @@ export default function pollchart(rawData) {
             .ticks(5)
             .tickSize(width)
             .tickFormat(function(d) {
-                return d === 40 ? formatPercent(d / 100) : d;
+                return d === 50 ? formatPercent(d / 100) : d;
             });
 
         // for mobile

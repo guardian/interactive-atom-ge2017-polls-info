@@ -7,7 +7,7 @@ export default function DayByDay(data, options) {
 // HACK: make the range run to 45%, rather than dynamically set it to the 10-point range 
 // in which the biggest poll result for the biggest party across the whole dataset occurs
 
-	var MAX = 45;
+	var MAX = 50;
 
 	var xscale = d3.scaleLinear().domain([0, MAX]).range([0, 1]);
 	var canvas, ctx;
