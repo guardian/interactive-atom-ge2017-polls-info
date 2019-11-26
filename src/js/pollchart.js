@@ -95,9 +95,7 @@ function composeDataByParty(data, dataAvg, dateList) {
 
                 //TODO: add precaution conditions 
                 if (viAvg !== undefined) {
-                    //console.log(viAvg);
                     viAvg = Math.round(viAvg * 100) / 100;
-                    //console.log(viAvg, " [r]");
                 }
 
                 // a list of vi of the day (viDayList)
@@ -113,7 +111,6 @@ function composeDataByParty(data, dataAvg, dateList) {
                     viDayList[0] = viAvg;
                 }
 
-                //console.log(new Date(date), date, viAvg, viDayList);
                 return {
                     party: d.party,
                     date: date,
@@ -126,8 +123,6 @@ function composeDataByParty(data, dataAvg, dateList) {
             }) //end of dateList.map (values)  
         };
     }); //end of dataByParty.map
-
-    // console.log(dataByPartyPollster)
 
     return {
         date: dataByPartyDate,
@@ -178,7 +173,7 @@ export default function pollchart(rawData) {
     var width, height,
         margin = {
             top: 30,
-            right: 0,
+            right: 30,
             bottom: 30,
             left: 0
         },
@@ -301,7 +296,7 @@ export default function pollchart(rawData) {
                 .attr("x2", xs[0]).attr("y2", y(coord.y) - 10);
             gt1
 
-                .attr("x", xs[0] - 5).attr("y", y(coord.y))
+                .attr("x", xs[0] - 5).attr("y", y(coord.y) + 50)
                 .attr("text-anchor", "end")
                 .text("Johnson becomes PM")
 
