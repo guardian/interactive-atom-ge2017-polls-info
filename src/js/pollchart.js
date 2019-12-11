@@ -173,7 +173,7 @@ export default function pollchart(rawData) {
     var width, height,
         margin = {
             top: 30,
-            right: 40,
+            right: 80,
             bottom: 30,
             left: 0
         },
