@@ -172,9 +172,9 @@ export default function pollchart(rawData) {
     // Window size and chart's coordinate system:
     var width, height,
         margin = {
-            top: 40,
+            top: 30,
             right: 40,
-            bottom: 40,
+            bottom: 30,
             left: 0
         },
         xAxis, yAxis, x, y,
